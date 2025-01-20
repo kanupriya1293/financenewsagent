@@ -56,6 +56,9 @@ Finance News AI is a Python-based application that collects and analyzes financi
    SUPABASE_PASSWORD=your_supabase_password
    BRAVE_API_KEY=your_brave_api_key
    GEMINI_API_KEY=your_gemini_api_key
+   GMAIL_EMAIL=gmail_email_used_by_agent
+   GMAIL_APP_PASSWORD=gmail_email_app_password
+   RECIPIENT_EMAIL=recepient_email_report_is_sent_to
    ```
 
 ## Usage
