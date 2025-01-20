@@ -1,0 +1,34 @@
+name: Run Python Scripts Daily
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This runs the workflow every day at midnight UTC
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.11'  # Specify the Python version you need
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Make sure you have a requirements.txt file
+
+      - name: Run Info Agent
+        run: python info_agent.py
+
+      - name: Run BTC Agent
+        run: python btc_agent.py
+
+      - name: Run Email Agent
+        run: python email_agent.py
+
+
