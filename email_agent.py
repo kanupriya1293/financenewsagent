@@ -29,7 +29,8 @@ class EmailAgent:
             'SUPABASE_PASSWORD': os.getenv('SUPABASE_PASSWORD'),
             'GEMINI_API_KEY': os.getenv('GEMINI_API_KEY'),
             'GMAIL_EMAIL': os.getenv('GMAIL_EMAIL'),
-            'GMAIL_APP_PASSWORD': os.getenv('GMAIL_APP_PASSWORD')
+            'GMAIL_APP_PASSWORD': os.getenv('GMAIL_APP_PASSWORD'),
+            'RECIPIENT_EMAIL': os.getenv('RECIPIENT_EMAIL')
         }
         
         if not all(self.required_vars.values()):
@@ -192,8 +193,10 @@ class EmailAgent:
             print(f"Error sending email: {e}")
             return False
 
-    def run(self, recipient_email, hours=24):
+    def run(self, hours=24):
         """Main execution function"""
+        recipient_email = self.required_vars['RECIPIENT_EMAIL']
+
         print(f"Starting analysis for the last {hours} hours...")
 
         if not self.authenticate():
@@ -219,6 +222,5 @@ class EmailAgent:
 
 
 if __name__ == "__main__":
-    recipient_email = "19vedant@gmail.com"  # Replace with actual email
     agent = EmailAgent()
-    agent.run(recipient_email) 
+    agent.run() 
